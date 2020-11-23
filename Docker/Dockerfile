@@ -14,7 +14,7 @@ RUN  apt-get update && apt-get install -y git && \
      cd / && \ 
      /bin/bash -c "pip install postal"
 
-RUN cd / && git clone --single-branch --branch master https://github.com/raph84/libpostal-api
+RUN cd / && git clone --single-branch --branch master  https://github.com/raph84/libpostal-api
 RUN pip3 install --default-timeout=100 -r /libpostal-api/requirements.txt
 
 FROM python AS dev
@@ -31,3 +31,5 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 # Expose SSH
 EXPOSE 22
+
+EXPOSE 8080
