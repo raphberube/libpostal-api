@@ -12,10 +12,22 @@ RUN  apt-get update && apt-get install -y git && \
      ldconfig && \ 
      rm -rf /var/lib/apt/lists/* && \
      cd / && \ 
-     /bin/bash -c "pip install postal"
+     /bin/bash -c "pip3 install postal"
 
-RUN cd / && git clone --single-branch --branch master  https://github.com/raph84/libpostal-api
+#RUN cd / && git clone --single-branch --branch master  https://github.com/raph84/libpostal-api
+COPY . /libpostal-api/
 RUN pip3 install --default-timeout=100 -r /libpostal-api/requirements.txt
+
+FROM python AS prod
+RUN pip install Flask gunicorn
+
+# Run the web service on container startup. Here we use the gunicorn
+# webserver, with one worker process and 8 threads.
+# For environments with multiple CPU cores, increase the number of workers
+# to be equal to the cores available.
+WORKDIR /libpostal-api
+CMD exec gunicorn --log-level=debug --bind :$PORT --workers $WORKERS --threads 8 --timeout 0 PPO_MPC_API:app :$SAVE_AGENT
+
 
 FROM python AS dev
 

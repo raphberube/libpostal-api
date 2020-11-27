@@ -12,9 +12,14 @@ if __name__ != '__main__':
     app.logger.handlers = gunicorn_logger.handlers
     app.logger.setLevel(gunicorn_logger.level)
 
-@app.route('/parse/', methods=['POST'])
+@app.route('/parseaddress/', methods=['POST'])
 def parse():
-    return json.dumps(parse_address('The Book Club 100-106 Leonard St Shoreditch London EC2A 4RH, United Kingdom'))
+    body = request.get_json()
+    input_str = body['request']
+    parsed = parse_address(input_str)
+    parsed = [item[0].upper() for item in parsed]
+    body['result'] = parsed
+    return json.dumps(body)
 
 if __name__ == "__main__":
     print("Main")
