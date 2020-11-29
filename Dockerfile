@@ -1,4 +1,4 @@
-FROM raph84:libpostal-python-buster AS python
+FROM raph84/libpostal-python:release-1.1.1 AS python
 
 #RUN cd / && git clone --single-branch --branch master  https://github.com/raph84/libpostal-api
 COPY . /libpostal-api/
