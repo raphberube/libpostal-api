@@ -11,8 +11,8 @@ steps:
   - 'container'
   - 'images'
   - 'add-tag'
-  - 'us.gcr.io/$PROJECT_ID/libpostal-api:$COMMIT_SHA'
-  - 'us.gcr.io/$PROJECT_ID/libpostal-api:latest'
+  - 'gcr.io/$PROJECT_ID/libpostal-api:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/libpostal-api:latest'
 
 
 - id: 'branch name'
