@@ -130,5 +130,5 @@ resource "google_cloud_run_service_iam_member" "binding" {
   project  = var.project_id
   service  = google_cloud_run_service.libpostalapi.name
   role     = "roles/run.invoker"
-  member   = "allUsers"
+  member   = "allAuthenticatedUsers"
 }
