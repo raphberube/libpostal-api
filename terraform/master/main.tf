@@ -24,6 +24,10 @@ resource "google_service_account" "libpostal-api" {
   account_id = "libpostal-api"
 }
 
+resource "google_service_account" "api-token" {
+  account_id = "api-token"
+}
+
 resource "google_project_service" "enable_cloud_resource_manager_api" {
   project                    = var.project_id
   service                    = "cloudresourcemanager.googleapis.com"
@@ -107,7 +111,7 @@ resource "google_cloud_run_service" "libpostalapi" {
         resources {
           limits = {
             "cpu"    = "1000m"
-            "memory" = "4Gi"
+            "memory" = "2Gi"
           }
           requests = {}
         }
@@ -124,6 +128,13 @@ output "url" {
   value = google_cloud_run_service.libpostalapi.status[0].url
 }
 
+resource "google_cloud_run_service_iam_member" "binding" {
+  location = var.location
+  project  = var.project_id
+  service  = google_cloud_run_service.libpostalapi.name
+  role     = "roles/run.invoker"
+  member   = google_service_account.api-token.email
+}
 
 resource "google_cloud_run_service_iam_member" "binding" {
   location = var.location
