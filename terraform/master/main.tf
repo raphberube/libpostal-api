@@ -133,5 +133,5 @@ resource "google_cloud_run_service_iam_member" "api-token-run-invoker" {
   project  = var.project_id
   service  = google_cloud_run_service.libpostalapi.name
   role     = "roles/run.invoker"
-  member   = google_service_account.api-token.email
+  member   = "serviceAccount:${google_service_account.api-token.email}"
 }
