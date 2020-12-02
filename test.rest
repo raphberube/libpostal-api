@@ -1,7 +1,6 @@
 #POST https://libpostal-api-xdraskphpq-uk.a.run.app/parseaddress/ HTTP/1.1
 POST http://localhost:8080/parseaddress/ HTTP/1.1
 content-type: application/json
-
 {
     "request":"20 RUE PRINCIPALE, MONTREAL, QC, G2L1B9"
 }
