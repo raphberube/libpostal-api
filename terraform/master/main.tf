@@ -128,7 +128,7 @@ output "url" {
   value = google_cloud_run_service.libpostalapi.status[0].url
 }
 
-resource "google_cloud_run_service_iam_member" "binding" {
+resource "google_cloud_run_service_iam_member" "api-token-run-invoker" {
   location = var.location
   project  = var.project_id
   service  = google_cloud_run_service.libpostalapi.name
