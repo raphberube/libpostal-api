@@ -15,7 +15,7 @@ WORKDIR /libpostal-api
 CMD exec gunicorn --log-level=debug --bind :$PORT --workers $WORKERS --threads 8 --timeout 0 api:app 
 
 
-FROM python AS dev
+FROM prod AS dev
 
 RUN   apt-get update && apt-get install -y openssh-server && \
       rm -rf /var/lib/apt/lists/* && \
