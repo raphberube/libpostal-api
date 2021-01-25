@@ -111,7 +111,7 @@ resource "google_cloud_run_service" "libpostalapi" {
         resources {
           limits = {
             "cpu"    = "1000m"
-            "memory" = "2Gi"
+            "memory" = "3Gi"
           }
           requests = {}
         }
