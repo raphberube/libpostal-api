@@ -12,7 +12,7 @@ RUN pip install Flask gunicorn
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
 WORKDIR /libpostal-api
-CMD exec gunicorn --log-level=debug --bind :$PORT --workers $WORKERS --threads 8 --timeout 0 api:app 
+CMD exec gunicorn --log-level=debug --bind :$PORT --workers $WORKERS --threads 4 --timeout 0 api:app 
 
 
 FROM prod AS dev

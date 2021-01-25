@@ -85,7 +85,7 @@ resource "google_cloud_run_service" "libpostalapi" {
     spec {
       container_concurrency = 1
       service_account_name  = google_service_account.libpostal-api.email
-      timeout_seconds       = 30
+      timeout_seconds       = 60
 
 
       containers {
