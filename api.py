@@ -17,9 +17,12 @@ def parse():
     body = request.get_json()
     input_str = body['request']
     parsed = parse_address(input_str)
-    #parsed = [item[0].upper() for item in parsed]
-    body['result'] = parsed
-    return json.dumps(body)
+    
+    result = {}
+    for item in parsed:
+        result[item[1]] = item[0]
+
+    return result
 
 if __name__ == "__main__":
     print("Main")
